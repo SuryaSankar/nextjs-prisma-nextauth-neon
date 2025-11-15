@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
+import SignIn from "./sign-in";
 // import { SignInModal } from "../auth/SignInModal";
 // import { SignUpModal } from "../auth/SignUpModal";
 // import { UserDropdown } from "./UserDropdown";
@@ -41,16 +42,16 @@ export default function Navigation() {
             {status === "loading" ? (
               <div className="h-10 w-20 bg-gray-200 animate-pulse rounded-lg" />
             ) : session?.user ? (
-                <div></div>
-            //   <UserDropdown session={session} />
+                <button onClick={() => signOut({ callbackUrl: "/" })}>Logout</button>
             ) : (
               <>
-                <button
+                <SignIn/>
+                {/* <button
                   onClick={() => setIsSignInOpen(true)}
                   className="hidden sm:block text-gray-700 font-medium hover:text-[#369b6f] transition-all duration-200"
                 >
                   Sign In
-                </button>
+                </button> */}
                 <button
                   onClick={() => setIsSignUpOpen(true)}
                   className="px-3 py-2 sm:px-4 bg-[#369b6f] hover:bg-[#2d8159] text-white rounded-lg transition-all duration-200 font-medium shadow-sm hover:-translate-y-0.5 hover:shadow-md text-sm sm:text-base"
