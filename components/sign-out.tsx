@@ -8,7 +8,7 @@ export default function SignOut() {
         await signOut()
       }}
     >
-      <button type="submit">Sign Out</button>
+      <button className="hidden sm:block text-gray-700 font-medium hover:text-[#369b6f] transition-all duration-200" type="submit">Sign Out</button>
     </form>
   )
 }
