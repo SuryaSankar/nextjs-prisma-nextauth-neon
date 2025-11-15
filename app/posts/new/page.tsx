@@ -10,6 +10,10 @@ export default async function NewPost() {
   async function createPost(formData: FormData) {
     "use server";
 
+    if(!session?.user){
+      return;
+    }
+
     const title = formData.get("title") as string;
     const content = formData.get("content") as string;
 
@@ -17,7 +21,7 @@ export default async function NewPost() {
       data: {
         title,
         content,
-        authorId: session?.user?.id,
+        authorId: session.user.id,
       },
     });
 
