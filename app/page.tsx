@@ -1,5 +1,4 @@
 import prisma from '@/lib/prisma'
-import SignIn from '@/components/sign-in'
 
 export default async function Home() {
   const users = await prisma.user.findMany();
