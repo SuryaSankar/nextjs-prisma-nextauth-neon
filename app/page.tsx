@@ -9,15 +9,8 @@ export default async function Home() {
         Superblog
       </h1>
       <div>
-        <SignIn/>
+        <a href="/posts/new">Create Post</a>
       </div>
-      <ol className="list-decimal list-inside font-[family-name:var(--font-geist-sans)]">
-        {users.map((user) => (
-          <li key={user.id} className="mb-2">
-            {user.name}
-          </li>
-        ))}
-      </ol>
     </div>
   );
 }

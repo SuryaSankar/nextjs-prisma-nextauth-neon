@@ -1,9 +1,12 @@
 import Form from "next/form";
 import prisma from "@/lib/prisma";
+import { auth } from "@/auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export default function NewPost() {
+export default async function NewPost() {
+  const session = await auth();
+
   async function createPost(formData: FormData) {
     "use server";
 
@@ -14,12 +17,16 @@ export default function NewPost() {
       data: {
         title,
         content,
-        authorId: 1,
+        authorId: session?.user?.id,
       },
     });
 
     revalidatePath("/posts");
     redirect("/posts");
+  }
+
+  if(!session?.user){
+    return <div>You need to sign in to create a post</div>
   }
 
   return (
