@@ -10,7 +10,7 @@ export default async function NewPost() {
   async function createPost(formData: FormData) {
     "use server";
 
-    if(!session?.user){
+    if(!session?.user?.id){
       return;
     }
 
