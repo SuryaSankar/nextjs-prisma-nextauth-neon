@@ -2,15 +2,13 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { auth } from "@/auth"
 import { useSession } from "next-auth/react";
 // import { SignInModal } from "../auth/SignInModal";
 // import { SignUpModal } from "../auth/SignUpModal";
 // import { UserDropdown } from "./UserDropdown";
 
-export default async function Navigation() {
-//   const { data: session, status } = useSession();
-  const session = await auth()
+export default function Navigation() {
+  const { data: session, status } = useSession();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
